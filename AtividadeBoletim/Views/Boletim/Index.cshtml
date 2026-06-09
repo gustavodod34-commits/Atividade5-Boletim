@@ -1,0 +1,51 @@
+@model IEnumerable<AtividadeBoletim.Models.Boletim>
+
+@{
+    ViewData["Title"] = "Boletim Escolar";
+}
+
+<div class="text-center my-4">
+    <h1 class="display-4 text-dark">📊 Boletim Escolar</h1>
+    <p class="lead">Acompanhamento Técnico de Notas - UNINOVE (Atividade 5)</p>
+</div>
+
+<div class="card shadow-sm border-0">
+    <div class="card-body p-0">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead class="table-dark">
+                    <tr>
+                        <th class="ps-4">Estudante</th>
+                        <th>Disciplina</th>
+                        <th class="text-center">Nota 1</th>
+                        <th class="text-center">Nota 2</th>
+                        <th class="text-center">Média Final</th>
+                        <th class="text-center pe-4">Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var aluno in Model)
+                    {
+                        <tr>
+                            <td class="fw-bold ps-4 text-secondary">@aluno.NomeAluno</td>
+                            <td>@aluno.Materia</td>
+                            <td class="text-center">@aluno.Nota1.ToString("F1")</td>
+                            <td class="text-center">@aluno.Nota2.ToString("F1")</td>
+                            <td class="text-center fw-bold text-primary">@aluno.Media.ToString("F1")</td>
+                            <td class="text-center pe-4">
+                                @if (aluno.Situacao == "Aprovado")
+                                {
+                                    <span class="badge bg-success px-3 py-2 rounded-pill">Aprovado</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-danger px-3 py-2 rounded-pill">Reprovado</span>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
